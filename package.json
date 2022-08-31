@@ -1,0 +1,22 @@
+{
+  "name": "google-sheets-investment-math",
+  "author": "Patrick Carroll",
+  "version": "0.0.1",
+  "types": "./lib/main.d.ts",
+  "license": "MIT",
+  "funding": {
+    "type": "individual",
+    "url": "https://paypal.me/patrickomatic"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "eslint": "^8.23.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-shopify": "^35.1.0",
+    "typescript": "^4.8.2"
+  },
+  "scripts": {
+    "lint": "eslint . --ext .ts"
+  }
+}
