@@ -1,8 +1,5 @@
-import {OptionPositionType} from './types';
-
-function isBlank(value): boolean {
-  return value == null || value === "";
-}
+import {Broker, OptionPositionType} from './types';
+import {isBlank} from './utils';
 
 /**
  * Given a strike price and amount of contracts, calculates the capital needed if assigned on a position
@@ -26,11 +23,39 @@ export function CAPITAL_NEEDED(
   }
 }
 
-// for schwab at $0.65 a trade
-export function COMMISSION(closePrice) {
-  return (isBlank(closePrice) || closePrice === 0) ? 0.65 : 1.30;
+/**
+ * Calculate the commission charged on a trade.
+ *
+ * @param {number} closePrice - The price the contract closed at
+ * @param {string} broker - Currently only 'Schwab' is supported
+ *
+ * @return the estimated commission charged
+ *
+ */
+export function COMMISSION(
+  closePrice: number,
+  broker: Broker = 'Schwab',
+): number {
+  // TODO implement logic for more brokers
+  if (broker !== 'Schwab') {
+    console.error(`Unknown broker: ${broker}.  Commission will be $0`);
+    return 0;
+  }
+  const costPerTrade = 0.65;
+  return (isBlank(closePrice) || closePrice === 0)
+    ? costPerTrade
+    : costPerTrade * 2;
 }
 
+/**
+ * Determine the profit on a closed options contract
+ *
+ * @param {number} openPrice - The price the contract was opened for
+ * @param {number | null} closePrice - The price the contract was opened for
+ * @param {number} contracts - The number of contracts
+ *
+ * @return the profit (in dollars)
+ */
 export function PROFIT(
   openPrice: number,
   closePrice: number | null,
