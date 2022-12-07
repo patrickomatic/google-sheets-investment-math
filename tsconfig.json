@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "outDir": "lib"
+    "outDir": "lib",
+    "lib": ["es2017"]
   },
   "include": [
     "./src/**/*.ts"
